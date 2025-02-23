@@ -1,32 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import CustomMapView from './CustomMapView'; // Importo komponentin e hartës
-
-// Mock vehicle data
-const initialVehicles = [
-  {
-    id: 'bus1',
-    name: 'Campus Shuttle A',
-    route: 'Main Campus Loop',
-    latitude: 37.7749,
-    longitude: -122.4194,
-    status: 'On Time',
-  },
-  {
-    id: 'bus2',
-    name: 'Campus Shuttle B',
-    route: 'North Campus Express',
-    latitude: 37.7760,
-    longitude: -122.4180,
-    status: 'Delayed',
-  },
-];
+import * as Location from 'expo-location';
+import CustomMapView from './CustomMapView'; // Importo automatikisht variantin e duhur për platformën
 
 export default function TransportScreen() {
-  const [vehicles, setVehicles] = useState(initialVehicles);
+  const [vehicles, setVehicles] = useState([
+    {
+      id: 'bus1',
+      name: 'Campus Shuttle A',
+      route: 'Main Campus Loop',
+      latitude: 37.7749,
+      longitude: -122.4194,
+      status: 'On Time',
+    },
+    {
+      id: 'bus2',
+      name: 'Campus Shuttle B',
+      route: 'North Campus Express',
+      latitude: 37.7760,
+      longitude: -122.4180,
+      status: 'Delayed',
+    },
+  ]);
   const [userLocation, setUserLocation] = useState(null);
 
-  // Get user location
+  // Merr vendndodhjen e përdoruesit
   useEffect(() => {
     (async () => {
       let { status } = await Location.requestForegroundPermissionsAsync();
@@ -39,7 +37,7 @@ export default function TransportScreen() {
     })();
   }, []);
 
-  // Simulate vehicle movement
+  // Simulimi i lëvizjes së autobusëve
   useEffect(() => {
     const interval = setInterval(() => {
       setVehicles(prevVehicles =>
@@ -67,7 +65,7 @@ export default function TransportScreen() {
         <Text style={styles.refreshText}>🔄 Refresh</Text>
       </TouchableOpacity>
 
-      <Text>Welcome to the Transport Screen!</Text>
+      <Text style={styles.infoText}>Welcome to the Transport Screen!</Text>
     </View>
   );
 }
@@ -95,5 +93,10 @@ const styles = StyleSheet.create({
   refreshText: {
     fontWeight: 'bold',
     fontSize: 18,
+  },
+  infoText: {
+    marginTop: 10,
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });
