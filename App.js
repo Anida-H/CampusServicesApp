@@ -6,6 +6,7 @@ import { Text, View , StyleSheet} from 'react-native';
 import CafeteriaStack from './screens/CafeteriaScreen';
 import FacilityScreen from './screens/FacilityScreen';
 import MaintenanceScreen from './screens/MaintenanceScreen';
+import TransportScreen from './screens/TransportScreen';
 
 
 
@@ -14,7 +15,7 @@ import MaintenanceScreen from './screens/MaintenanceScreen';
 
 function CafeteriaScreen() { return <View><Text>Cafeteria</Text></View> }
 
-function TransportScreen() { return <View><Text>Transport</Text></View> }
+function TempTransportScreen() { return <View><Text>Transport</Text></View> }
 
 function TempFacilityScreen() { return <View><Text>Facilities</Text></View> }
 
