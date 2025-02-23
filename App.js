@@ -1,20 +1,52 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
+import { Text, View , StyleSheet} from 'react-native';
+import CafeteriaStack from './screens/CafeteriaScreen';
+import FacilityScreen from './screens/FacilityScreen';
+import MaintenanceScreen from './screens/MaintenanceScreen';
+import TransportScreen from './screens/TransportScreen';
+
+
+
+
+// Temporary screens
+
+function CafeteriaScreen() { return <View><Text>Cafeteria</Text></View> }
+
+function TempTransportScreen() { return <View><Text>Transport</Text></View> }
+
+function TempFacilityScreen() { return <View><Text>Facilities</Text></View> }
+
+function TempMaintenanceScreen() { return <View><Text>Maintenance</Text></View> }
+
+const Tab = createBottomTabNavigator();
+
 
 export default function App() {
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+
+    <NavigationContainer>
+
+      <Tab.Navigator>
+
+      <Tab.Screen name="Cafeteria" component={CafeteriaStack} />
+
+        <Tab.Screen name="Transport" component={TransportScreen} />
+
+        <Tab.Screen name="Facilities" component={FacilityScreen} />
+
+        <Tab.Screen name="Maintenance" component={MaintenanceScreen} />
+
+      </Tab.Navigator>
+
+    </NavigationContainer>
+
   );
+
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
+
